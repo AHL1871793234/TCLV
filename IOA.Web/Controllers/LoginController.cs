@@ -27,7 +27,7 @@ namespace IOA.Web.Controllers
             byte[] bytes = VerificationCodeHelper.CreateValidateGraphic(code);
             return File(bytes, "image/.jpg");
         }
-        #region 登录方法一
+        #region 登录方法视图Index一
         //登录视图1
         public IActionResult Index()
         {
@@ -59,7 +59,7 @@ namespace IOA.Web.Controllers
         }
         #endregion
 
-        #region 登录方法二
+        #region 登录方法视图Login二
         //登录视图2
         public IActionResult Login()
         {

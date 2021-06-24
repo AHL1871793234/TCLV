@@ -125,7 +125,6 @@ namespace IOA.Web.Controllers
 
         public IActionResult Class()
         {
-
             return View();
         }
 
