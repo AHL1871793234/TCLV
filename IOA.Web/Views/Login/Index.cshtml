@@ -8,7 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <title>button</title>
-    <link href="~/Scripts/layui-v2.6.8/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
     <style>
         blockquote {
             margin-top: 10px;
@@ -33,7 +34,7 @@
         }
 
         body {
-            background: url(images/u0.png);
+            background: url(/images/u0.png);
             background-repeat: no-repeat;
             background-size: 100%;
             width: 100%;
@@ -50,10 +51,18 @@
 
         .layui-input-inline input {
             text-indent: 2em;
+            float: left;
         }
 
         .layui-inline {
             padding-top: 10px;
+        }
+        .layui-input-inline .image {
+            margin-top: 0px;
+            margin-left: 5px;
+            width: 70px;
+            height: 35px;
+            float: left;
         }
     </style>
 </head>
@@ -62,36 +71,125 @@
 
     <div class="layui-row">
         <div class="layui-form-item">
-            <div class="layui-inline">
-                <div class="layui-input-inline">
-                    <img src="images/u13.png" />
-                    <input type="text" name="username" lay-verify="required|username" autocomplete="off" class="layui-input" placeholder="用户名">
+            <form class="layui-form" id="UserLoginForm">
+                <div class="layui-form-item layui-inline">
+                    <div class="layui-input-inline">
+                        <img src="/images/u13.png" />
+                        <input type="text" name="userName" lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-            </div>
-            <br />
-            <div class="layui-inline">
-                <div class="layui-input-inline">
-                    <img src="images/u11.png" />
-                    <input type="password" name="password" lay-verify="required|password" autocomplete="off" class="layui-input" placeholder="密码">
+                <div class="layui-form-item layui-inline">
+                    <div class="layui-input-inline">
+                        <img src="/images/u11.png" />
+                        <input type="password" name="userPwd" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-            </div>
-            <br />
-            <div class="layui-inline">
-                <div class="layui-input-inline">
-                    <img src="images/u11.png" />
-                    <input type="text" name="code" lay-verify="required|code" autocomplete="off" class="layui-input" placeholder="验证码">
-                    <img src="/Login/" alt="" />
+                <div class="layui-inline layui-form-item">
+                    <div class="layui-input-inline">
+                        <img src="~/images/u11.png" />
+                        <input type="text" name="code" lay-verify="required|code" autocomplete="off" class="layui-input" placeholder="验证码">
+                        <img class="image" src="/Login/CheckCode" onclick="src='/Login/CheckCode?a='+Math.random()" />
+                    </div>
                 </div>
-            </div>
-            <br />
-            <div class="layui-inline">
-                <button class="layui-btn layui-btn-danger" style="width: 190px;">登录</button>
-            </div>
+                <div class="layui-inline layui-form-item">
+                    <a href="#">忘记密码？</a>
+                </div>
+                <br />
 
+                <div class="layui-inline layui-form-item">
+                    <button type="button" class="layui-btn" style="width: 190px;" lay-submit="" lay-filter="UserLogin">立即提交</button>
+                </div>
+            </form>
         </div>
     </div>
+    <script src="~/layui/layui.js"></script>
+    <script>
+        layui.use(['form', 'layedit', 'laydate'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate;
+
+            //日期
+            laydate.render({
+                elem: '#date'
+            });
+            laydate.render({
+                elem: '#date1'
+            });
+
+            //创建一个编辑器
+            var editIndex = layedit.build('LAY_demo_editor');
+
+            //自定义验证规则
+            form.verify({
+                title: function (value) {
+                    if (value.length < 5) {
+                        return '标题至少得5个字符啊';
+                    }
+                }
+                , pass: [
+                    /^[\S]{6,12}$/
+                    , '密码必须6到12位，且不能出现空格'
+                ]
+                , content: function (value) {
+                    layedit.sync(editIndex);
+                }
+            });
+
+            //监听指定开关
+            form.on('switch(switchTest)', function (data) {
+                layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+                    offset: '6px'
+                });
+                layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+            });
+
+            //监听提交
+            form.on('submit(UserLogin)', function (data) {
+                console.log(data);
+                $.ajax({
+                    url: "/Login/UserRoleLogin",
+                    type: "post",
+                    data: data.field,
+                    success: function (d) {
+                        if (d > 0) {
+                            layer.msg("登录成功", { icon: 1 }, function () {
+                                parent.location.href = "/Home/Index";
+                            })
+                        }
+                        else {
+                            layer.msg("登录失败", { icon: 2 }, function () {
+                                parent.location.href = "/Login/Index";
+                            })
+                        }
+                    }
+                })
+                return false;
+            });
+
+            //表单赋值
+            layui.$('#LAY-component-form-setval').on('click', function () {
+                form.val('example', {
+                    "username": "贤心" // "name": "value"
+                    , "password": "123456"
+                    , "interest": 1
+                    , "like[write]": true //复选框选中状态
+                    , "close": true //开关状态
+                    , "sex": "女"
+                    , "desc": "我爱 layui"
+                });
+            });
+
+            //表单取值
+            layui.$('#LAY-component-form-getval').on('click', function () {
+                var data = form.val('example');
+                alert(JSON.stringify(data));
+            });
+
+        });
+    </script>
 </body>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/layui-v2.6.8/layui/layui.js"></script>
+
 
 </html>

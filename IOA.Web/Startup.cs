@@ -8,8 +8,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using System.Reflection;
 
 namespace IOA.Web
 {
@@ -25,7 +28,10 @@ namespace IOA.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IHomeRepositroy, HomeRepositroy>();
+            services.AddSession();
+
+            //services.AddSingleton<IHomeRepositroy, HomeRepositroy>();
+            //services.AddSingleton<ILoginRepository, LoginRepository>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             
         }
@@ -39,8 +45,10 @@ namespace IOA.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Login/Error");
             }
+            app.UseSession();
+
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -51,8 +59,15 @@ namespace IOA.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            string bllFilePath = Path.Combine(AppContext.BaseDirectory, "IOA.Repository.dll");
+            builder.RegisterAssemblyTypes(Assembly.LoadFile(bllFilePath)).AsImplementedInterfaces();
+        }
+
     }
 }

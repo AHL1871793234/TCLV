@@ -17,24 +17,24 @@ namespace IOA.Repository
         //public List<MenuModel> headData(string sql, object param)
         //{
         //    //string sql = "select MenuModel.MenuName,UserModel.UserName from RoleMenu join MenuModel on MenuModel.MenuID=RoleMenu.MenuID join UserRole on RoleMenu.RoleID=UserRole.RoleID join UserModel on UserModel.UserID=UserRole.UserID where MenuModel.MenuParentID=0  and UserModel.UserID=1";
-            
+
         //}
 
-        public List<MenuModel> leftData( int parentID=0)
+        public List<MenuModel> leftData(int? userId, int parentID = 0)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("select MenuModel.MenuId,MenuModel.MenuName,UserModel.UserName from RoleMenu join MenuModel on MenuModel.MenuID=RoleMenu.MenuID join UserRole on RoleMenu.RoleID=UserRole.RoleID join UserModel on UserModel.UserID=UserRole.UserID");
-            stringBuilder.Append(" where MenuModel.MenuParentID=@parentID and UserModel.UserID=@userID");
-            if (parentID==1)
+            stringBuilder.Append("select d.MenuId,e.MenuName,e.MenuLink,b.UserName from UserRoles a join UserModel b on a.UserId = b.UserId join RoleModel c on c.RoleId = a.RoleId join RolesMenu d on c.RoleId = d.RoleId join MenuModel e on e.MenuId = d.MenuId");
+            stringBuilder.Append(" where e.MenuParentID=@parentID and b.UserId=@userID");
+            if (parentID == 1)
             {
-                stringBuilder.Append(" and MenuModel.MenuName='个人中心'");
+                stringBuilder.Append(" and e.MenuName='个人中心'");
             }
             if (parentID == 4)
             {
-                stringBuilder.Append(" and MenuModel.MenuName='任务管理'");
+                stringBuilder.Append(" and e.MenuName='任务管理'");
             }
 
-            List<MenuModel> leftData = DapperHelper<MenuModel>.Query(stringBuilder.ToString(), new { @parentID = parentID, @userID = 1 });
+            List<MenuModel> leftData = DapperHelper<MenuModel>.Query(stringBuilder.ToString(), new { @parentID = parentID, @userID = userId });
             return leftData;
         }
 

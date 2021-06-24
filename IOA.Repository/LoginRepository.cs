@@ -12,9 +12,10 @@ namespace IOA.Repository
         //数据库查登录名称 和密码
         public UserModel LookingFor(string userName, string userPwd)
         {
-            string sql = "select * from UserModel where UserName=@userName and UserPwd=@UserPwd";
-            UserModel data = DapperHelper<UserModel>.QueryFirst(sql, new { @userName = userName, userPwd = userPwd });
+            string sql = "select * from UserModel where UserName=@userName and UserPwd=@userPwd";
+            UserModel data = DapperHelper<UserModel>.QueryFirst(sql, new { @userName = userName, @userPwd = userPwd });
             return data;
         }
+        
     }
 }
