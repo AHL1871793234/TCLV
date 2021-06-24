@@ -13,6 +13,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using System.IO;
+using System.Reflection;
 
 namespace IOA.API
 {
@@ -31,26 +34,24 @@ namespace IOA.API
         {
             services.AddSession();
             services.AddControllers();
-            services.AddSingleton<ILoginRepository, LoginRepository>();
-            services.AddSingleton<IHomeRepositroy, HomeRepositroy>();
 
-
+            //services.AddSingleton<ILoginRepository, LoginRepository>();
+            //services.AddSingleton<IHomeRepositroy, HomeRepositroy>();
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "IOA.API", Version = "v1" });
                 //添加全局安全条件
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
-         {
-              {
-            new OpenApiSecurityScheme{
-                Reference = new OpenApiReference {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"}
-            },new string[] { }
-        }
-    });
-              
+                 {
+                    {
+                        new OpenApiSecurityScheme{
+                            Reference = new OpenApiReference {
+                                        Type = ReferenceType.SecurityScheme,
+                                        Id = "Bearer"}
+                        },new string[] { }
+                    }
+                });
             });
         }
 
@@ -65,6 +66,7 @@ namespace IOA.API
             }
 
             app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -74,5 +76,14 @@ namespace IOA.API
                 endpoints.MapControllers();
             });
         }
+
+
+        public  void ConfigureContainer(ContainerBuilder builder)
+        {
+            string bllFilePath = Path.Combine(AppContext.BaseDirectory, "IOA.Repository.dll");
+            builder.RegisterAssemblyTypes(Assembly.LoadFile(bllFilePath)).AsImplementedInterfaces();
+        }
+
+
     }
 }
