@@ -67,18 +67,18 @@
                 , title: '角色数据表'
                 , cols: [[
                     { type: 'checkbox', fixed: 'left', align: 'center' }
-                    , { field: 'roleId', title: 'ID', width: 80, fixed: 'left', align:'center', sort: true }
-                    , { field: 'roleName', title: '角色名称', width: 120, edit: 'text', align: 'center' }
-                    , { field: 'roleMsg', title: '角色描述', width: 200, edit: 'text', align: 'center' }
-                    , { field: 'roleState', title: '角色状态', width: 120, edit: 'text', sort: true, align: 'center' }
-                    , { field: 'roleCreateName', title: '创建人', width: 100, align: 'center' }
+                    , { field: 'roleId', title: 'ID',fixed: 'left', align:'center', sort: true }
+                    , { field: 'roleName', title: '角色名称',edit: 'text', align: 'center' }
+                    , { field: 'roleMsg', title: '角色描述',  edit: 'text', align: 'center' }
+                    , { field: 'roleState', title: '角色状态', edit: 'text', sort: true, align: 'center' }
+                    , { field: 'roleCreateName', title: '创建人',align: 'center' }
                     , {
-                        field: 'roleCreateDate', title: '创建时间', width: 200, align: 'center'
+                        field: 'roleCreateDate', title: '创建时间',  align: 'center'
                         //, templet: function (d) {
                         //    return dateFormat("yyyt-MM-dd", new Date(pa(d.roleCreateDate.substr(6,13))))
                         //}
                     }
-                    , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 380, align: 'center' }
+                    , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 280, align: 'center' }
                 ]]
                 , id: 'testReload'
                 , page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
@@ -147,7 +147,7 @@
                         type: 2,
                         area: ['70%', '80%'],
                         title: '分配功能/菜单',
-                        content:'/Menu/Index'
+                        content: '/Menu/Index?roleId=' + data.roleId
                     })
                 }
             });
