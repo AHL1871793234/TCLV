@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link href="~/Scripts/layui-v2.6.8/layui/css/layui.css" rel="stylesheet" media="all" />
     <link href="~/Scripts/layui-v2.6.8/layui/css/admin.css" rel="stylesheet" media="all"/>
-
+    <script src="~/lib/jquery/dist/jquery.js"></script>
 </head>
 <body class="layui-layout-body">
 
@@ -90,7 +90,7 @@
             <div class="layui-side layui-side-menu">
                 <div class="layui-side-scroll">
                     <div class="layui-logo" lay-href="home/console.html">
-                        <span>layuiAdmin</span>
+                        <span>OA办公系统</span>
                     </div>
 
                     <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
@@ -129,7 +129,7 @@
             <!-- 主体内容 -->
             <div class="layui-body" id="LAY_app_body">
                 <div class="layadmin-tabsbody-item layui-show">
-                    <iframe name="ifr" width="100%" height="100%"></iframe>
+                    <iframe id="iframeShow" name="ifr" width="100%" height="100%" frameborder="0" scrolling="no" ></iframe>
                 </div>
             </div>
 
@@ -139,6 +139,16 @@
     </div>
 
     <script src="~/Scripts/layui-v2.6.8/layui/layui.js"></script>
+
+    <script>
+        $(function () {
+            $(".layui-nav-child a").click(function (e) {
+                e.preventDefault();
+                $("#iframeShow").attr("src", $(this).attr("lay-href"));
+            })
+        })
+    </script>
+
     <script>
         layui.config({
             base: '../layuiadmin/' //静态资源所在路径
@@ -158,7 +168,6 @@
         })();
 
         function DisPlayMEnu(parentId) {
-
             location.href = "/Home/Index?parentID=" + parentId;
         }
     </script>

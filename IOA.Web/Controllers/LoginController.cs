@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace IOA.Web.Controllers
 {
+    /// <summary>
+    /// 登录控制器
+    /// </summary>
     public class LoginController : Controller
     {
         ILoginRepository login;
@@ -38,7 +41,7 @@ namespace IOA.Web.Controllers
         {
             try
             {
-                if (code.ToLower() == HttpContext.Session.GetString("Code").ToLower())
+                if (code.ToLower() == HttpContext.Session.GetString("Code").ToLower()|| code.ToUpper() == HttpContext.Session.GetString("Code").ToUpper())
                 {
                     UserModel user = login.LookingFor(userName, userPwd);
                     if (user != null)
@@ -53,7 +56,7 @@ namespace IOA.Web.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                return 0;
             }
             
         }
@@ -75,6 +78,7 @@ namespace IOA.Web.Controllers
             }
             return 0;
         }
+        #endregion
         //忘记密码，找回密码视图
         public IActionResult PassWord()
         {
@@ -91,7 +95,8 @@ namespace IOA.Web.Controllers
             }
             return 0;
         }
-        #endregion
+     
+
 
     }
 }

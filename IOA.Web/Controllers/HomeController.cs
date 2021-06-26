@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace IOA.Web.Controllers
 {
+    /// <summary>
+    /// 主页控制器  【框架】
+    /// </summary>
     public class HomeController : Controller
     {
 

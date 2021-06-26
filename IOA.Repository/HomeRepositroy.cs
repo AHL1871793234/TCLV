@@ -1,8 +1,6 @@
 ﻿using IOA.Common;
 using IOA.IRepository;
 using IOA.Model;
-using IRepositroy;
-using Repositroy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
