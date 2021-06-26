@@ -32,7 +32,7 @@ namespace IOA.Web.Controllers
 
             List<MenuModel> data = menu.Show("select * from MenuModel", "");//获取所有菜单
             //根据角色Id  获取对应的菜单Id
-            List<MenuModel> data1 = menu.Show("select * from RolesMenu join RoleModel on RoleModel.RoleId=RolesMenu.RoleId join MenuModel on MenuModel.MenuId=RolesMenu.MenuId where RoleModel.RoleId=@roleId", new { @roleId = roleId });
+            List<MenuModel> data1 = menu.Show("select * from RolesMenu join RoleModel on RoleModel.RoleId=RolesMenu.RoleId join MenuModel on MenuModel.MenuId=RolesMenu.MenuId where RoleModel.RoleId=@roleId and RolesMenu.RoleMenuStatus=1", new { @roleId = roleId } );
             //通过角色Id  获取的菜单id 保存到泛型集合
             foreach (var id in data1)
             {
