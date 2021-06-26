@@ -1,4 +1,5 @@
 ﻿using IOA.IRepository;
+using IOA.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,10 +20,31 @@ namespace IOA.Web.Controllers
             user = _user;
         }
 
+        #region  显示员工/用户信息
+        //显示用户/员工视图
         public IActionResult Index()
         {
             return View();
         }
+        //显示用户/员工方法
+        public IActionResult UserIndex(string userName = "", int page = 1, int limit = 5)
+        {
+            List<UserModel> data = user.Show("select * from UserModel", "");
+
+            if (!string.IsNullOrEmpty(userName))
+            {
+                data = data.Where(x => x.UserName.Contains(userName)).ToList();
+            }
+            else
+            {
+                data = data.ToList();
+            }
+
+            var pageData = data.Skip(limit * (page - 1)).Take(limit).ToList();
+
+            return Ok(new { code = 0, msg = "", count = data.Count, data = pageData });
+        }
+        #endregion
 
 
     }

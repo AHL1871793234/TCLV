@@ -20,13 +20,14 @@ namespace IOA.Web.Controllers
             role = _role;
         }
 
+        #region  显示角色信息
         //显示角色视图
         public IActionResult Index()
         {
             return View();
         }
         //显示角色信息方法
-        public IActionResult RoleIndex(int page=1,int limit=5,string roleName="")
+        public IActionResult RoleIndex(int page = 1, int limit = 5, string roleName = "")
         {
             List<RoleModel> data = role.Show("select * from RoleModel", "");
             //条件查询
@@ -43,7 +44,12 @@ namespace IOA.Web.Controllers
 
             return Ok(new { code = 0, msg = "", count = data.Count, data = pageData });
         }
+        #endregion
+
+        #region  拼接角色树形图
 
 
+
+        #endregion
     }
 }
