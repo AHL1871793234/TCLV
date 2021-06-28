@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace IOA.IRepository
 {
-    public interface IMenuRepository:IBaseRepositroy<MenuModel>
+    public interface ILoginLogRepository:IBaseRepositroy<LoginLog>
     {
-        bool EditMenu(int roleId, int menuId);
     }
 }

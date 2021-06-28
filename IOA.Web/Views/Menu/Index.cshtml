@@ -68,10 +68,22 @@
             //按钮事件
             util.event('lay-demo', {
                 getChecked: function (othis) {
+
                     var checkedData = tree.getChecked('demoId1'); //获取选中节点的数据
 
+                    $.ajax({
+                        url: "/Menu/TreeIndex",
+                        type: "post",
+                        data: { data: JSON.stringify(checkedData) },
+                        success: function (d) {
+
+                        }
+                    })
+
                     layer.alert(JSON.stringify(checkedData), { shade: 0 });
+
                     console.log(checkedData);
+
                 }
                 , setChecked: function () {
                     tree.setChecked('demoId1', [12, 16]); //勾选指定节点

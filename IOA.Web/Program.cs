@@ -19,7 +19,14 @@ namespace IOA.Web
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            //自动依赖注入
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+            //日志
+             .ConfigureLogging(logging =>
+             {
+                 logging.ClearProviders();
+                 logging.AddConsole();
+             })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
