@@ -19,15 +19,13 @@ namespace IOA.Web.Controllers
     {
         ILoginRepository login;
         ILoginLogRepository loginLog;
-        Microsoft.Extensions.Logging.ILogger _logger;
         //Nlog  日志
         //Logger logger = LogManager.GetCurrentClassLogger();
 
-        public LoginController(ILoginRepository _login, ILoginLogRepository _loginLog, ILogger<LoginController> logger)
+        public LoginController(ILoginRepository _login, ILoginLogRepository _loginLog)
         {
             login = _login;
             loginLog = _loginLog;
-            _logger = logger;
         }
 
         //生成图片验证码
@@ -38,6 +36,8 @@ namespace IOA.Web.Controllers
             byte[] bytes = VerificationCodeHelper.CreateValidateGraphic(code);
             return File(bytes, "image/.jpg");
         }
+
+
         #region 登录方法视图Index一
         //登录视图1
         public IActionResult Index()
@@ -50,8 +50,9 @@ namespace IOA.Web.Controllers
         public int UserRoleLogin(string userName, string userPwd, string code)
         {
             string agent = Request.Headers["User-Agent"];
-
+            //定义生成随机数字
             Random r = new Random();
+            //随即数字在100000到999999之间
             string number = r.Next(100000, 999999).ToString();
 
             if (code.ToLower() == HttpContext.Session.GetString("Code").ToLower() || code.ToUpper() == HttpContext.Session.GetString("Code").ToUpper())
@@ -61,9 +62,11 @@ namespace IOA.Web.Controllers
                 {
                     HttpContext.Session.SetInt32("UserId", user.UserId);
                     HttpContext.Session.SetString("UserName", user.UserName);
+
                     //保存登录日志
                     //logger.Debug($"HI--{user.UserName}--{DateTime.Now.ToString("yyyyMMddHHmmss")}");
 
+                    Log4NetUtil.Info("测试日志");
 
                     //添加登录日志信息保存到数据库
                     DapperHelper<LoginLog>.Execute("insert into LoginLog values(@LoginNo,@LoginDate,@LoginName,@LoginStatus,@LoginTerminal,@LoginIP,@LoginMAC)",
@@ -73,7 +76,7 @@ namespace IOA.Web.Controllers
                             @LoginDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                             @LoginName = user.UserName,
                             @LoginStatus = "网页端",
-                            @LoginTerminal = agent.Substring(81,6)+"浏览器",
+                            @LoginTerminal = agent.Substring(81, 6) + "浏览器",
                             @LoginIP = GetMACIp.GetLocalIp(),       //电脑的IP地址
                             @LoginMAC = GetMACIp.GetMAC()           //电脑的MAC地址
                         });

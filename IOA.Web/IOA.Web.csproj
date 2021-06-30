@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="NLog" Version="4.7.10" />
     <PackageReference Include="NLog.Config" Version="4.7.10" />
+    <PackageReference Include="NLog.Schema" Version="4.7.10" />
   </ItemGroup>
 
   <ItemGroup>

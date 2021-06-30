@@ -1,0 +1,222 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/layer/mobile/need/layer.css" rel="stylesheet" />
+
+    <script src="~/layer/layer.js"></script>
+</head>
+<body>
+    <div class="layui-container">
+        <!--常规布局（以中型屏幕桌面为例）：-->
+        <div class="layui-row">
+
+            <div class="layui-col-md4">
+
+                <!--树形图-->
+                <div id="test12" class="demo-tree-more"></div>
+
+            </div>
+            <div class="layui-col-md8">
+
+                <!--数据表格-->
+                <table class="layui-hide" id="test" lay-filter="test"></table>
+                <!--表头-->
+                <script type="text/html" id="toolbarDemo">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+                    </div>
+                </script>
+                <!--表单里的数据-->
+                <script type="text/html" id="barDemo">
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                </script>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="~/layui/layui.js"></script>
+    <script>
+        layui.use(['table', 'tree', 'util'], function () {
+            var table = layui.table;
+            var tree = layui.tree
+                , layer = layui.layer
+                , util = layui.util
+
+                //模拟数据
+                , data = [{
+                    title: '全部'
+                    , id: 1
+                    , spread: true
+                    , href: 'https://www.layui.com/'
+                    , children: [{
+                        title: '支撑服务部'
+                        , id: 3
+                        , spread: true
+                        , href: 'https://www.layui.com/'
+                        , children: [{
+                            title: '行政部'
+                            , id: 23
+                        }, {
+                            title: '财务部'
+                            , id: 7
+                        }, {
+                            title: '人事部'
+                            , id: 8
+                        }, {
+                            title: '运维部'
+                            , id: 8
+                        }, {
+                            title: '法务部'
+                            , id: 8
+                        }]
+                    }, {
+                        title: '项目研发部'
+                        , id: 4
+                        , spread: true
+                        , children: [{
+                            title: '开发部'
+                            , id: 9
+                        }, {
+                            title: 'QA部'
+                            , id: 10
+                        }, {
+                            title: '产品部'
+                            , id: 10
+                        }]
+                    }, {
+                        title: '运营事业部'
+                        , id: 20
+                        , spread: true
+                        , children: [{
+                            title: '运营一部'
+                            , id: 21
+                        }, {
+                            title: '运营二部'
+                            , id: 22
+                        }, {
+                            title: '销售一部'
+                            , id: 22
+                        }
+                            , {
+                            title: '销售二部'
+                            , id: 22
+                        }
+                            , {
+                            title: '实施部'
+                            , id: 22
+                        }]
+                    }]
+                }]
+
+
+            //基本演示
+            tree.render({
+                elem: '#test12'
+                , data: data
+                , id: 'demoId1'
+                , isJump: true //是否允许点击节点时弹出新窗口跳转
+                , click: function (obj) {
+                    var data = obj.data;  //获取当前点击的节点数据
+                    layer.msg('状态：' + obj.state + '<br>节点数据：' + JSON.stringify(data));
+                }
+            });
+
+
+
+            table.render({
+                elem: '#test'
+                , url: '/Organization/OrganizationIndex'
+                , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+                , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                    title: '提示'
+                    , layEvent: 'LAYTABLE_TIPS'
+                    , icon: 'layui-icon-tips'
+                }]
+                , title: '组织架构表'
+                , cols: [[
+                    { type: 'checkbox', fixed: 'left' }
+                    , { field: 'organizationId', title: '组织架构ID', width: 120, fixed: 'left', sort: true }
+                    , { field: 'organizationName', title: '部门名称', width: 120 }
+                    , { field: 'totalCount', title: '人数', width: 80, sort: true }
+                    , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150 }
+                ]]
+                , page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+                    layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                    , curr: 1 //设定初始在第 5 页
+                    , groups: 5//只显示 1 个连续页码
+                    , first: '首页' //不显示首页
+                    , last: '尾页' //不显示尾页
+                    , page: 1
+                    , limit: 5
+                    , limits: [1, 2, 3, 4, 5, 10, 20, 50, 100]
+                }
+            });
+
+            //头工具栏事件
+            table.on('toolbar(test)', function (obj) {
+                var checkStatus = table.checkStatus(obj.config.id);
+                switch (obj.event) {
+                    case 'getCheckData':
+                        var data = checkStatus.data;
+                        layer.alert(JSON.stringify(data));
+                        break;
+                    case 'getCheckLength':
+                        var data = checkStatus.data;
+                        layer.msg('选中了：' + data.length + ' 个');
+                        break;
+                    case 'isAll':
+                        layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                        break;
+
+                    //自定义头工具栏右侧图标 - 提示
+                    case 'LAYTABLE_TIPS':
+                        layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                        break;
+                };
+            });
+
+            //监听行工具事件
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                //console.log(obj)
+                if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') {
+                    layer.prompt({
+                        formType: 2
+                        , value: data.email
+                    }, function (value, index) {
+                        obj.update({
+                            email: value
+                        });
+                        layer.close(index);
+                    });
+                }
+            });
+
+
+
+
+        });
+    </script>
+
+
+
+</body>
+</html>

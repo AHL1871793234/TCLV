@@ -46,6 +46,16 @@ namespace IOA.Web.Controllers
         }
         #endregion
 
+        //添加用户视图
+        public IActionResult CreateUser()
+        {
+            return View();
+        }
+        //添加用户方法
+        public IActionResult AddUser()
+        {
+            return View();
+        }
 
     }
 }

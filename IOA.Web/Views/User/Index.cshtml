@@ -34,7 +34,7 @@
 
     <script type="text/html" id="toolbarDemo">
         <div class="layui-btn-container">
-            <button class="layui-btn layui-btn-sm" lay-event="addRole">添加用户/员工</button>
+            <button class="layui-btn layui-btn-sm" lay-event="addUser">添加用户/员工</button>
             <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
             <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
             <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
@@ -67,21 +67,21 @@
                 , title: '员工数据表'
                 , cols: [[
                     { type: 'checkbox', fixed: 'left', align: 'center' }
-                    , { field: 'userId', title: 'Id', align: 'center', sort: true }
-                    , { field: 'userName', title: '用户真实姓名', edit: 'text', align: 'center' }
-                    , { field: 'userSex', title: '用户性别', edit: 'text', sort: true, align: 'center' }
-                    , { field: 'userCard', title: '用户身份证', align: 'center', sort: true }
-                    , { field: 'userPhone', title: '用户手机号', edit: 'text', align: 'center' }
-                    , { field: 'userNational', title: '用户民族', edit: 'text', align: 'center' }
-                    , { field: 'userEmail', title: '用户邮箱', edit: 'text', sort: true, align: 'center' }
-                    , { field: 'userMajor', title: '用户专业', align: 'center', sort: true }
-                    , { field: 'userJoinInDate', title: '用户入职日期', edit: 'text', align: 'center' }
-                    , { field: 'userDimissionDate', title: '用户离职日期', edit: 'text', align: 'center' }
-                    , { field: 'userDimissionCause', title: '用户离职原因', edit: 'text', sort: true, align: 'center' }
-                    , { field: 'userDeleteMark', title: '删除标记', align: 'center', sort: true }
-                    , { field: 'userIsAdmin', title: '是否系统管理员', edit: 'text', align: 'center' }
-                    , { field: 'userCreateName', title: '添加人', edit: 'text', align: 'center' }
-                    , { field: 'userCreateDate', title: '添加日期	', edit: 'text', sort: true, align: 'center' }
+                    , { field: 'userId', title: 'Id', align: 'center', sort: true, width: 80 }
+                    , { field: 'userName', title: '用户真实姓名', align: 'center' ,width:150}
+                    , { field: 'userSex', title: '用户性别', sort: true, align: 'center', width: 150 }
+                    , { field: 'userCard', title: '用户身份证', align: 'center', sort: true, width: 150}
+                    , { field: 'userPhone', title: '用户手机号', align: 'center', width: 150}
+                    , { field: 'userNational', title: '用户民族', align: 'center', width: 150}
+                    , { field: 'userEmail', title: '用户邮箱', sort: true, align: 'center', width: 150}
+                    , { field: 'userMajor', title: '用户专业', align: 'center', sort: true, width: 150}
+                    , { field: 'userJoinInDate', title: '用户入职日期', align: 'center', width: 150 }
+                    , { field: 'userDimissionDate', title: '用户离职日期', align: 'center', width: 150}
+                    , { field: 'userDimissionCause', title: '用户离职原因', sort: true, align: 'center', width: 150 }
+                    , { field: 'userDeleteMark', title: '删除标记', align: 'center', sort: true, width: 150}
+                    , { field: 'userIsAdmin', title: '是否系统管理员', align: 'center', width: 150 }
+                    , { field: 'userCreateName', title: '添加人', align: 'center', width: 150}
+                    , { field: 'userCreateDate', title: '添加日期	', sort: true, align: 'center', width: 150}
                     , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 280, align: 'center' }
                 ]]
                 , id: 'testReload'
@@ -112,12 +112,12 @@
                     case 'isAll':
                         layer.msg(checkStatus.isAll ? '全选' : '未全选');
                         break;
-                    case 'addRole':
+                    case 'addUser':
                         layer.open({
                             type: 2,
                             area: ['70%', '80%'],
                             title: '添加员工',
-                            content: ''
+                            content: '/User/CreateUser'
                         })
                         break;
                     //自定义头工具栏右侧图标 - 提示

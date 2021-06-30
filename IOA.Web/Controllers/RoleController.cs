@@ -51,5 +51,18 @@ namespace IOA.Web.Controllers
 
 
         #endregion
+
+
+        //添加角色视图
+        public IActionResult CreateRole()
+        {
+            return View();
+        }
+
+        //添加角色方法
+        public IActionResult AddRole()
+        {
+            return View();
+        }
     }
 }

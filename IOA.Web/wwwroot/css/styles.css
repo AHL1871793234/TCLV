@@ -1,0 +1,482 @@
+﻿.ax_default {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+}
+
+.box_1 {
+}
+
+.box_2 {
+}
+
+.box_3 {
+}
+
+.ellipse {
+}
+
+.text_link {
+    color: #0000FF;
+}
+
+.text_link_mouse_over {
+}
+
+.text_link_mouse_down {
+}
+
+._褰㈢姸 {
+    font-size: 14px;
+    color: #666666;
+}
+
+._鍥剧墖 {
+}
+
+.button {
+}
+
+.heading_1 {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 32px;
+    text-align: left;
+}
+
+.primary_button {
+    color: #FFFFFF;
+}
+
+._涓€绾ф爣棰� {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 32px;
+    text-align: left;
+}
+
+._浜岀骇鏍囬 {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 24px;
+    text-align: left;
+}
+
+._涓夌骇鏍囬 {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 18px;
+    text-align: left;
+}
+
+._鍥涚骇鏍囬 {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 14px;
+    text-align: left;
+}
+
+._浜旂骇鏍囬 {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: bold;
+    font-style: normal;
+    text-align: left;
+}
+
+._鍏骇鏍囬 {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 10px;
+    text-align: left;
+}
+
+._褰㈢姸1 {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: normal;
+    font-style: normal;
+}
+
+._鏂囨湰妗� {
+    color: #000000;
+    text-align: left;
+}
+
+.label {
+    font-size: 14px;
+    text-align: left;
+}
+
+.heading_3 {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 18px;
+    text-align: left;
+}
+
+._鏂囨湰娈佃惤 {
+    text-align: left;
+}
+
+._鏂囨湰閾炬帴 {
+    color: #0000FF;
+}
+
+._榧犳爣鎮仠鏂囨湰閾炬帴鏃� {
+}
+
+._榧犳爣鎸変笅鏂囨湰閾炬帴鏃� {
+}
+
+._鍗曢€夋寜閽� {
+    text-align: left;
+}
+
+.arrow {
+}
+
+.text_area {
+    color: #000000;
+    text-align: left;
+}
+
+.droplist {
+    color: #000000;
+    text-align: left;
+}
+
+.list_box {
+    color: #000000;
+    text-align: left;
+}
+
+.table_cell {
+}
+
+._娴佺▼褰㈢姸 {
+}
+
+.box_11 {
+}
+
+._澶嶉€夋 {
+    text-align: left;
+}
+
+.text_field {
+    color: #000000;
+    text-align: left;
+}
+
+.shape {
+}
+
+._36鍙峰瓧_椤堕儴鏍囬銆佸ぇ鎸夐挳銆佸脊绐楁彁绀轰富鏍囬_ {
+    font-family: 'PingFang SC Regular', 'PingFang SC';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    text-align: left;
+}
+
+.line {
+}
+
+.horizontal_line {
+}
+
+.icon {
+}
+
+.paragraph {
+    text-align: left;
+}
+
+.heading_11 {
+    font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 32px;
+    text-align: left;
+}
+
+.heading_2 {
+    font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 24px;
+    text-align: left;
+}
+
+.checkbox {
+    text-align: left;
+}
+
+.radio_button {
+    text-align: left;
+}
+
+.table {
+}
+
+.iconfont {
+    font-family: 'iconfont Regular', 'iconfont';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    color: #666666;
+}
+
+._褰㈢姸2 {
+}
+
+.tree_node {
+    font-family: '寰蒋闆呴粦';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    text-align: left;
+}
+
+.image {
+    color: #000000;
+}
+
+.vertical_line {
+}
+
+.image1 {
+}
+
+.ellipse1 {
+}
+
+.placeholder {
+}
+
+._涓嬫媺鍒楄〃妗� {
+    color: #000000;
+    text-align: left;
+}
+
+._澶氳鏂囨湰妗� {
+    color: #000000;
+    text-align: left;
+}
+
+._鍥剧墖1 {
+    color: #000000;
+}
+
+.checkbox1 {
+    text-align: left;
+}
+
+.radio_button1 {
+    text-align: left;
+}
+
+.box_21 {
+}
+
+.flow_shape {
+}
+
+.snapshot {
+}
+
+.marker {
+    color: #FFFFFF;
+}
+
+.paragraph1 {
+    text-align: left;
+}
+
+._34鍙峰瓧_鍗曡鍒楄〃鍐咃紝宸︽柟涓绘爣棰樻枃瀛楀瓧锛� {
+    font-family: 'PingFang SC Regular', 'PingFang SC';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 17px;
+    text-align: left;
+}
+
+._30鍙峰瓧_鏈嶅姟涓绘爣棰橈紝渚嬪鍙岃鍒楄〃鍐呯殑涓嬫柟鎻忚堪淇℃伅銆俖_锛� {
+    font-family: 'PingFang SC Regular', 'PingFang SC';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    text-align: left;
+}
+
+.refs-chart-data {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+}
+
+.shape1 {
+    font-family: 'PingFang SC Regular', 'PingFang SC';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: normal;
+}
+
+.materialicons {
+    font-family: 'Material Icons Regular', 'Material Icons';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    color: #000000;
+}
+
+.paragraph2 {
+    font-family: 'Roboto Regular', 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+}
+
+.heading_12 {
+    font-family: 'Roboto Regular', 'Roboto';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 32px;
+    text-align: left;
+}
+
+.heading_21 {
+    font-family: 'Roboto Regular', 'Roboto';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 24px;
+    text-align: left;
+}
+
+.label1 {
+    font-family: 'Roboto Regular', 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    text-align: left;
+}
+
+.primary_text_dark {
+    font-family: 'Roboto Regular', 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.866666666666667);
+    text-align: left;
+}
+
+.flat_button {
+    font-family: 'Roboto Regular', 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #2196F3;
+}
+
+.raised_button {
+    font-family: 'Roboto Regular', 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.text_field1 {
+    color: #000000;
+    text-align: left;
+}
+
+.box_12 {
+    font-family: 'Roboto Regular', 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+}
+
+.box_22 {
+    font-family: 'Roboto Regular', 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+}
+
+.ellipse2 {
+    font-family: 'Roboto Regular', 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+}
+
+.image2 {
+    font-family: 'Roboto Regular', 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+}
+
+.contact_chips {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.537254901960784);
+}
+
+.shape2 {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+}
+
+._榛樿鏍峰紡 {
+}
+
+.label2 {
+    font-size: 14px;
+    text-align: left;
+}
+
+.primary_button1 {
+    color: #FFFFFF;
+}
+
+._鏂囨湰妗�1 {
+    font-size: 13px;
+    color: #000000;
+    text-align: left;
+}
+
+.heading_22 {
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 24px;
+    text-align: left;
+}
+
+._褰㈢姸3 {
+    font-family: '寰蒋闆呴粦 Bold', '寰蒋闆呴粦 Regular', '寰蒋闆呴粦';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    color: #1ABC9C;
+}
+
+._琛ㄦ牸 {
+}

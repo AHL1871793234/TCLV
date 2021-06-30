@@ -126,7 +126,8 @@ namespace IOA.Web.Controllers
         }
         #endregion
 
-        public IActionResult Class()
+
+        public IActionResult Show()
         {
             return View();
         }

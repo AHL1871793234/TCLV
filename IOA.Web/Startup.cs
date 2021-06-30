@@ -18,6 +18,7 @@ namespace IOA.Web
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,8 +31,10 @@ namespace IOA.Web
         {
             services.AddSession();
 
-            //services.AddSingleton<IHomeRepositroy, HomeRepositroy>();
-            //services.AddSingleton<ILoginRepository, LoginRepository>();
+            services.AddControllers();
+            //≥ı ºªØlog4net
+            Log4NetUtil.InitLog4Net();
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             
         }
@@ -47,6 +50,7 @@ namespace IOA.Web
             {
                 app.UseExceptionHandler("/Login/Error");
             }
+
             app.UseSession();
 
             app.UseStaticFiles();
@@ -68,6 +72,9 @@ namespace IOA.Web
             string bllFilePath = Path.Combine(AppContext.BaseDirectory, "IOA.Repository.dll");
             builder.RegisterAssemblyTypes(Assembly.LoadFile(bllFilePath)).AsImplementedInterfaces();
         }
+
+
+      
 
     }
 }
