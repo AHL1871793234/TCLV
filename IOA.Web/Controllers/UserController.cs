@@ -52,10 +52,34 @@ namespace IOA.Web.Controllers
             return View();
         }
         //添加用户方法
-        public IActionResult AddUser()
+        public int AddUser(UserModel model)
         {
-            return View();
+            int hang = user.ZSG("Insert into UserModel values(@UserName,@UserPwd,@UserSex,@UserCard,@UserPhone,@UserNational,@UserEmail,@UserMajor,@UserJoinInDate,@UserDimissionDate,@UserDimissionCause,@UserDeleteMark,@UserIsAdmin,@UserCreateName,@UserCreateDate)", new
+            {
+                @UserName = model.UserName,
+                @UserPwd = model.UserPwd,
+                @UserSex = model.UserSex,
+                @UserCard = model.UserCard,
+                @UserPhone = model.UserPhone,
+                @UserNational = model.UserNational,
+                @UserEmail = model.UserEmail,
+                @UserMajor = model.UserMajor,
+                @UserJoinInDate = model.UserJoinInDate,
+                @UserDimissionDate = "",
+                @UserDimissionCause = "",
+                @UserDeleteMark = 1,
+                @UserIsAdmin = 1,
+                @UserCreateName = model.UserCreateName,
+                @UserCreateDate = model.UserCreateDate
+            });
+            if (hang>0)
+            {
+                return 1;
+            }
+            return 0;
         }
+        //删除用户
+
 
     }
 }

@@ -93,6 +93,7 @@
                 </div>
                 <div class="layui-inline layui-form-item">
                     <a href="/Login/PassWord">忘记密码？</a>
+                    <a href="#" onclick="RegisterUser()">立即注册</a>
                 </div>
                 <br />
 
@@ -188,6 +189,14 @@
             });
 
         });
+        function RegisterUser() {
+            layer.open({
+                type: 2,
+                area: ['70%', '80%'],
+                title: '注册用户',
+                content: '/User/CreateUser'
+            })
+        }
     </script>
 </body>
 

@@ -60,9 +60,16 @@ namespace IOA.Web.Controllers
         }
 
         //添加角色方法
-        public IActionResult AddRole()
+        public int AddRole(RoleModel model)
         {
-            return View();
+            int hang = role.ZSG("Insert into RoleModel values(@RoleName,@RoleMsg,@RoleState,@RoleCreateName,@RoleCreateDate )", new { @RoleName = model.RoleName, @RoleMsg = model.RoleMsg, @RoleState = model.RoleState, @RoleCreateName = model.RoleCreateName, @RoleCreateDate = model.RoleCreateDate });
+
+            if (hang>0)
+            {
+                return 1;
+            }
+
+            return 0;
         }
     }
 }
