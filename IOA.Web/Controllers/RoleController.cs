@@ -1,4 +1,5 @@
-﻿using IOA.IRepository;
+﻿using IOA.Common;
+using IOA.IRepository;
 using IOA.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -62,14 +63,57 @@ namespace IOA.Web.Controllers
         //添加角色方法
         public int AddRole(RoleModel model)
         {
-            int hang = role.ZSG("Insert into RoleModel values(@RoleName,@RoleMsg,@RoleState,@RoleCreateName,@RoleCreateDate )", new { @RoleName = model.RoleName, @RoleMsg = model.RoleMsg, @RoleState = model.RoleState, @RoleCreateName = model.RoleCreateName, @RoleCreateDate = model.RoleCreateDate });
-
-            if (hang>0)
+            int hang = role.ZSG("Insert into RoleModel values(@RoleName,@RoleMsg,@RoleState,@RoleCreateName,@RoleCreateDate )", new
             {
-                return 1;
-            }
+                @RoleName = model.RoleName,
+                @RoleMsg = model.RoleMsg,
+                @RoleState = model.RoleState,
+                @RoleCreateName = model.RoleCreateName,
+                @RoleCreateDate = model.RoleCreateDate
+            });
 
-            return 0;
+            return hang;
+        }
+        //删除角色信息
+        public int DelRole(string id)
+        {
+            //定义字符数组保存截取之后的Id
+            string[] strId = id.Split(',');
+            //定义标识符
+            int hang = 0;
+            //循环执行删除
+            foreach (var item in strId)
+            {
+                hang = role.ZSG("delete from RoleModel where RoleId  in (@ID)", new { @ID = item });
+            }
+            //返回1成功0失败
+            return hang;
+        }
+        //反填角色视图
+        public IActionResult EditRole(int id)
+        {
+            ViewBag.RoleId = id;
+            return View();
+        }
+        //反填角色信息方法
+        public IActionResult EditRoleIndex(int id)
+        {
+            RoleModel roleMenu = DapperHelper<RoleModel>.QueryFirst("select * from RoleModel where RoleId=@ID", new { @ID = id });
+            return Ok(roleMenu);
+        }
+        //修改角色信息
+        public int UpdRole(RoleModel model)
+        {
+            int hang = role.ZSG("update RoleModel set RoleName=@RoleName,RoleMsg=@RoleMsg,RoleState=@RoleState,RoleCreateName=@RoleCreateName,RoleCreateDate=@RoleCreateDate where  RoleId=@RoleId", new
+            {
+                @RoleName = model.RoleName,
+                @RoleMsg = model.RoleMsg,
+                @RoleState = model.RoleState,
+                @RoleCreateName = model.RoleCreateName,
+                @RoleCreateDate = model.RoleCreateDate,
+                @RoleId = model.RoleId
+            });
+            return hang;
         }
     }
 }

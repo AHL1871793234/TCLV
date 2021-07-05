@@ -117,12 +117,12 @@
                     data: data.field,
                     success: function (d) {
                         if (d > 0) {
-                            layer.msg("添加成功", { icon: 1 }, function () {
-                                parent.location.href = "/Role/Index";
+                            layer.msg("添加成功", { time: 500, icon: 1 }, function () {
+                                parent.location.reload();
                             })
                         } else {
-                            layer.msg("添加失败", { icon: 2 }, function () {
-                                parent.location.href = "/Role/Index";
+                            layer.msg("添加失败", { time: 500, icon: 1 }, function () {
+                                parent.location.reload();
                             })
                         }
                     }

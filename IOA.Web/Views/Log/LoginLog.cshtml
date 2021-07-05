@@ -30,9 +30,11 @@
 
     <script type="text/html" id="toolbarDemo">
         <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="delLoginLog">批量删除</button>
             <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
             <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
             <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+            <button class="layui-btn layui-btn-sm" lay-event="exportExcel">导出日志</button>
         </div>
     </script>
 
@@ -46,7 +48,8 @@
 
     <script>
         layui.use('table', function () {
-            var table = layui.table;
+            var table = layui.table
+                , layer = layui.layer;
 
             table.render({
                 elem: '#test'
@@ -69,7 +72,7 @@
                     , { field: 'loginMAC', title: 'MAC地址', width: 180, sort: true, align: 'center' }
                     , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150, align: 'center' }
                 ]]
-                , id:'testReload'
+                , id: 'testReload'
                 , page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                     layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
                     , curr: 1//设定初始在第 5 页
@@ -97,7 +100,34 @@
                     case 'isAll':
                         layer.msg(checkStatus.isAll ? '全选' : '未全选');
                         break;
+                    case 'exportExcel':
+                        window.location.href = "/Log/ExportLogExcel"
+                        break;
+                    case 'delLoginLog':
+                        var data = checkStatus.data;
+                        var Ids = [];
+                        for (var i = 0; i < data.length; i++) {
+                            Ids.push(data[i].loginId);
+                        }
 
+                        layer.confirm('真的删除行么', function (index) {
+                            $.ajax({
+                                url: "/Log/DelLog?id=" + Ids.toString(),
+                                type: "post",
+                                success: function (d) {
+                                    if (d > 0) {
+                                        layer.msg("删除成功", {
+                                            time: 500,
+                                            icon: 1
+                                        }, function () {
+                                            parent.location.reload();
+                                        })
+                                    }
+                                }
+                            })
+                            layer.close(index);
+                        });
+                        break;
                     //自定义头工具栏右侧图标 - 提示
                     case 'LAYTABLE_TIPS':
                         layer.alert('这是工具栏右侧自定义的一个图标按钮');
@@ -111,7 +141,20 @@
                 //console.log(obj)
                 if (obj.event === 'del') {
                     layer.confirm('真的删除行么', function (index) {
-                        obj.del();
+                        $.ajax({
+                            url: "/Log/DelLog?id=" + data.loginId,
+                            type: "post",
+                            success: function (d) {
+                                if (d > 0) {
+                                    layer.msg("删除成功", {
+                                        time: 500,
+                                        icon: 1
+                                    }, function () {
+                                        parent.location.reload();
+                                    })
+                                }
+                            }
+                        })
                         layer.close(index);
                     });
                 } else if (obj.event === 'edit') {

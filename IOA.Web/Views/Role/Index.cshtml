@@ -35,6 +35,7 @@
     <script type="text/html" id="toolbarDemo">
         <div class="layui-btn-container">
             <button class="layui-btn layui-btn-sm" lay-event="addRole">添加角色</button>
+            <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="delRole">批量删除</button>
             <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
             <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
             <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
@@ -103,6 +104,32 @@
                     case 'isAll':
                         layer.msg(checkStatus.isAll ? '全选' : '未全选');
                         break;
+                    case 'delRole':
+                        layer.confirm('真的删除行么', function (index) {
+                            var data = checkStatus.data;//获取全部数据
+                            var Ids = [];//定义保存Id的数组
+                            //循环遍历选中的Id并存进数组
+                            for (var i = 0; i < data.length; i++) {
+                                Ids.push(data[i].roleId)
+                            }
+                            //Ajax执行删除
+                            $.ajax({
+                                url: "/Role/DelRole?id=" + Ids.toString(),
+                                type: "post",
+                                success: function (d) {
+                                    if (d > 0) {
+                                        layer.msg("删除成功", {
+                                            time: 500,
+                                            icon: 1
+                                        }, function () {
+                                            parent.location.reload();
+                                        })
+                                    }
+                                }
+                            })
+                            layer.close(index);
+                        });
+                        break;
                     case 'addRole':
                         layer.open({
                             type: 2,
@@ -124,18 +151,28 @@
                 //console.log(obj)
                 if (obj.event === 'del') {
                     layer.confirm('真的删除行么', function (index) {
-                        obj.del();
+                        $.ajax({
+                            url: "/Role/DelRole?id=" + data.roleId,
+                            type: "post",
+                            success: function (d) {
+                                if (d>0) {
+                                    layer.msg("删除成功", {
+                                        time:500,
+                                        icon: 1
+                                    }, function () {
+                                        parent.location.reload();
+                                    })
+                                }
+                            }
+                        })
                         layer.close(index);
                     });
                 } else if (obj.event === 'edit') {
-                    layer.prompt({
-                        formType: 2
-                        , value: data.email
-                    }, function (value, index) {
-                        obj.update({
-                            email: value
-                        });
-                        layer.close(index);
+                    layer.open({
+                        type: 2,
+                        area: ['70%', '80%'],
+                        title: '编辑角色信息',
+                        content: '/Role/EditRole?id=' + data.roleId,
                     });
                 } else if (obj.event === 'jurisdiction') {
                     layer.open({

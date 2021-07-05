@@ -12,6 +12,7 @@
     <PackageReference Include="NLog" Version="4.7.10" />
     <PackageReference Include="NLog.Config" Version="4.7.10" />
     <PackageReference Include="NLog.Schema" Version="4.7.10" />
+    <PackageReference Include="NPOI" Version="2.5.3" />
   </ItemGroup>
 
   <ItemGroup>

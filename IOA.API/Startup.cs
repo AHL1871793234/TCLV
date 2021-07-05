@@ -65,9 +65,14 @@ namespace IOA.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "IOA.API v1"));
             }
 
+
             app.UseSession();
 
             app.UseRouting();
+
+            app.UseCors(x => x.AllowAnyOrigin());
+
+            app.UseHttpsRedirection();
 
             app.UseAuthorization();
 

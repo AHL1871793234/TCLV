@@ -1,4 +1,5 @@
-﻿using IOA.IRepository;
+﻿using IOA.Common;
+using IOA.IRepository;
 using IOA.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -72,14 +73,61 @@ namespace IOA.Web.Controllers
                 @UserCreateName = model.UserCreateName,
                 @UserCreateDate = model.UserCreateDate
             });
-            if (hang>0)
+            if (hang > 0)
             {
                 return 1;
             }
             return 0;
         }
         //删除用户
-
-
+        public int DelUser(string id)
+        {
+            //定义一个字符串数组保存截取之后的数组
+            string[] strId = id.Split(',');
+            int hang = 0;
+            //循环执行删除
+            foreach (var item in strId)
+            {
+                //执行删除语句
+                hang = user.ZSG("delete from UserModel where UserId in (@Id)", new { @Id = item });
+            }
+            return hang;
+        }
+        //反填用户视图
+        public IActionResult EditUser(int id)
+        {
+            ViewBag.UserID = id;
+            return View();
+        }
+        //反填用户信息方法
+        public IActionResult EditUserIndex(int id)
+        {
+            UserModel userModel = DapperHelper<UserModel>.QueryFirst("select * from UserModel where UserId=@Id", new { @Id = id });
+            return Ok(userModel);
+        }
+        //修改用户信息
+        public int UpdUser(UserModel model)
+        {
+            int hang = user.ZSG("update UserModel set UserName=@UserName, UserPwd=@UserPwd, UserSex=@UserSex, UserCard=@UserCard, UserPhone=@UserPhone, UserNational=@UserNational, UserEmail=@UserEmail, UserMajor=@UserMajor, UserJoinInDate=@UserJoinInDate, UserDimissionDate=@UserDimissionDate, UserDimissionCause=@UserDimissionCause, UserDeleteMark=@UserDeleteMark, UserIsAdmin=@UserIsAdmin, UserCreateName=@UserCreateName, UserCreateDate=@UserCreateDate where UserId=@UserId", new
+            {
+                @UserId=model.UserId,
+                @UserName = model.UserName,
+                @UserPwd = model.UserPwd,
+                @UserSex = model.UserSex,
+                @UserCard = model.UserCard,
+                @UserPhone = model.UserPhone,
+                @UserNational = model.UserNational,
+                @UserEmail = model.UserEmail,
+                @UserMajor = model.UserMajor,
+                @UserJoinInDate = model.UserJoinInDate,
+                @UserDimissionDate = model.UserDimissionDate,
+                @UserDimissionCause = model.UserDimissionCause,
+                @UserDeleteMark = model.UserDeleteMark,
+                @UserIsAdmin = model.UserIsAdmin,
+                @UserCreateName = model.UserCreateName,
+                @UserCreateDate = model.UserCreateDate
+            });
+            return hang;
+        }
     }
 }
