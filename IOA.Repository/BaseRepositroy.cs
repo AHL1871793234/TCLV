@@ -5,6 +5,10 @@ using IOA.IRepository;
 
 namespace IOA.Repository
 {
+    /// <summary>
+    /// 公用的显示、添加、删除、修改  帮助类   调用主菜单接口实现方法
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class BaseRepositroy<T> : IBaseRepositroy<T> where T : class, new()
     {
         /// <summary>

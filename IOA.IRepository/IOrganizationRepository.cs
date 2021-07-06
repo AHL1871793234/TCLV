@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace IOA.IRepository
 {
+    /// <summary>
+    /// 组织架构接口
+    /// </summary>
     public interface IOrganizationRepository:IBaseRepositroy<Organization>
     {
     }

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace IOA.Repository
 {
+    /// <summary>
+    /// 菜单类  调用公共类和菜单接口
+    /// </summary>
     public class MenuRepository:BaseRepositroy<MenuModel>,IMenuRepository
     {
         public bool EditMenu(int roleId,int menuId)

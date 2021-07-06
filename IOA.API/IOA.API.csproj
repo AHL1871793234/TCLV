@@ -8,12 +8,16 @@
     <PackageReference Include="Autofac" Version="6.2.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NLog" Version="4.7.10" />
+    <PackageReference Include="NLog.Config" Version="4.7.10" />
+    <PackageReference Include="NLog.Schema" Version="4.7.10" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\IOA.Common\IOA.Common.csproj" />
     <ProjectReference Include="..\IOA.IRepository\IOA.IRepository.csproj" />
+    <ProjectReference Include="..\IOA.Model\IOA.Model.csproj" />
     <ProjectReference Include="..\IOA.Repository\IOA.Repository.csproj" />
   </ItemGroup>
 

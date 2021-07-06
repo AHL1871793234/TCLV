@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace IOA.Model
 {
+    /// <summary>
+    /// 菜单表
+    /// </summary>
     public class MenuModel
     {
         private int _menuid;////菜单ID

@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace IOA.Common
 {
-   public static  class ConfigurationHepler
+    /// <summary>
+    /// 数据库连接字符串类
+    /// </summary>
+    public static class ConfigurationHepler
     {
-        public static string configurations = "";
+        public static string configurations = "Data Source=.;Initial Catalog=QuanXianDB;User ID=sa;password=123456;";
     }
 }

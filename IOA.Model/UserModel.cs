@@ -2,6 +2,9 @@
 
 namespace IOA.Model
 {
+    /// <summary>
+    /// 用户表
+    /// </summary>
     public class UserModel
     {
         private int _userid;  //用户工号

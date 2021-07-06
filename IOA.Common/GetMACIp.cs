@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace IOA.Common
 {
     /// <summary>
-    /// 获取电脑 物理 地址
+    /// 获取电脑物理地址【IP和MAC】
     /// </summary>
     public static class GetMACIp
     {

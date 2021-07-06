@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace IOA.Repository
 {
+    /// <summary>
+    /// 主菜单 类  调用主菜单接口实现方法并调用公共类
+    /// </summary>
     public class HomeRepositroy : BaseRepositroy<MenuModel>, IHomeRepositroy
     {
         //获取头部方法

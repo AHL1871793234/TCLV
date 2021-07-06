@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace IOA.IRepository
 {
+    /// <summary>
+    /// 主菜单接口
+    /// </summary>
     public interface IHomeRepositroy : IBaseRepositroy<MenuModel>
     {
 

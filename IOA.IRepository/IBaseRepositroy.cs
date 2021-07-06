@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace IOA.IRepository
 {
+    /// <summary>
+    /// 公用的显示、添加、删除、修改方法【接口】
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface IBaseRepositroy<T> where T:class,new()
     {
         /// <summary>

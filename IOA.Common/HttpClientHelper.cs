@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace IOA.Common
 {
+    /// <summary>
+    /// 帮助类  API  
+    /// </summary>
     public static class HttpClientHelper
     {
         private static string apiUri = System.Configuration.ConfigurationManager.AppSettings["apiUri"];

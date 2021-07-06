@@ -1,6 +1,6 @@
 using System;
 
-namespace IOA.API
+namespace IOA.Api
 {
     public class WeatherForecast
     {

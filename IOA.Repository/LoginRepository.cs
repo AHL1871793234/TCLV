@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace IOA.Repository
 {
+    /// <summary>
+    /// 登录类  调用公共类和登录接口
+    /// </summary>
     public class LoginRepository : BaseRepositroy<UserModel>, ILoginRepository
     {
         //数据库查登录名称 和密码

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace IOA.Common
 {
+    /// <summary>
+    /// 日志log4
+    /// </summary>
     public class Log4NetUtil
     {
         //日志仓储(单例模式，静态变量，程序在第一次使用的时候被调用，由clr保证)

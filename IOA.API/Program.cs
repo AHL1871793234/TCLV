@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac.Extensions.DependencyInjection;
 
-namespace IOA.API
+namespace IOA.Api
 {
     public class Program
     {

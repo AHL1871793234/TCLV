@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace IOA.Repository
 {
+    /// <summary>
+    /// 用户类  调用类  调用用户接口
+    /// </summary>
     public class UserRepository:BaseRepositroy<UserModel>,IUserRepository
     {
 

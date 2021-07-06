@@ -67,6 +67,7 @@ namespace IOA.Web
             });
         }
 
+        //×Ô¶¯×¢Èë
         public void ConfigureContainer(ContainerBuilder builder)
         {
             string bllFilePath = Path.Combine(AppContext.BaseDirectory, "IOA.Repository.dll");

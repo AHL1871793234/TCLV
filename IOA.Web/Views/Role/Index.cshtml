@@ -68,12 +68,12 @@
                 , title: '角色数据表'
                 , cols: [[
                     { type: 'checkbox', fixed: 'left', align: 'center' }
-                    , { field: 'roleId', title: 'ID',fixed: 'left', align:'center', sort: true }
-                    , { field: 'roleName', title: '角色名称',edit: 'text', align: 'center' }
-                    , { field: 'roleMsg', title: '角色描述',  edit: 'text', align: 'center' }
-                    , { field: 'roleState', title: '角色状态', edit: 'text', sort: true, align: 'center' }
-                    , { field: 'roleCreateName', title: '创建人',align: 'center' }
-                    , { field: 'roleCreateDate', title: '创建时间',  align: 'center' }
+                    , { field: 'roleId', title: 'ID', fixed: 'left', align: 'center', sort: true }
+                    , { field: 'roleName', title: '角色名称', align: 'center' }
+                    , { field: 'roleMsg', title: '角色描述', align: 'center' }
+                    , { field: 'roleState', title: '角色状态', sort: true, align: 'center' }
+                    , { field: 'roleCreateName', title: '创建人', align: 'center' }
+                    , { field: 'roleCreateDate', title: '创建时间', align: 'center' }
                     , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 280, align: 'center' }
                 ]]
                 , id: 'testReload'
@@ -135,7 +135,7 @@
                             type: 2,
                             area: ['70%', '80%'],
                             title: '添加角色',
-                            content:'/Role/CreateRole'
+                            content: '/Role/CreateRole'
                         })
                         break;
                     //自定义头工具栏右侧图标 - 提示
@@ -155,9 +155,9 @@
                             url: "/Role/DelRole?id=" + data.roleId,
                             type: "post",
                             success: function (d) {
-                                if (d>0) {
+                                if (d > 0) {
                                     layer.msg("删除成功", {
-                                        time:500,
+                                        time: 500,
                                         icon: 1
                                     }, function () {
                                         parent.location.reload();

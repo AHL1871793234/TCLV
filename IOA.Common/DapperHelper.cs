@@ -15,8 +15,8 @@ namespace IOA.Common
         /// <summary>
         /// 数据库连接字符串
         /// </summary>
-        private static readonly string connectionString =
-            "Data Source=.;Initial Catalog=QuanXianDB;User ID=sa;password=123456;";
+        private static readonly string connectionString = ConfigurationHepler.configurations;
+
 
         /// <summary>
         /// 查询列表

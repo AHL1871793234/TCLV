@@ -19,8 +19,8 @@ namespace IOA.Web.Controllers
     /// </summary>
     public class HomeController : Controller
     {
-
         public readonly IHomeRepositroy _ihomeRepositroy;
+
         public HomeController(IHomeRepositroy ihomeRepositroy)
         {
             _ihomeRepositroy = ihomeRepositroy;

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IOA.API.Controllers
+namespace IOA.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

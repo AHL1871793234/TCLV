@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace IOA.Web.Controllers
 {
+    /// <summary>
+    /// 日志控制器
+    /// </summary>
     public class LogController : Controller
     {
         ILoginLogRepository loginLog;
@@ -92,6 +95,8 @@ namespace IOA.Web.Controllers
             MemoryStream memoryStream = new MemoryStream();
             wk.Write(memoryStream);
             return File(memoryStream.ToArray(), "application/ms-excel", $"登录日志{DateTime.Now.ToString("yyyyMMddHHmmss")}.xlsx");
+
+
         }
 
     }

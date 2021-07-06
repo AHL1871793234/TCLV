@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace IOA.Model
 {
+    /// <summary>
+    /// 角色表
+    /// </summary>
     public class RoleModel
     {
         private int _roleid;////角色ID
